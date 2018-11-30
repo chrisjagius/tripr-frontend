@@ -22,13 +22,13 @@ class TripsContainer extends React.Component {
 
 
 getDestinations() {
-  fetch('https://tripr-backend.herokuapp.com/api/v1/destinations')
+  fetch('http://localhost:3001/api/v1/destinations')
   .then(resp => resp.json())
   .then(destinations => this.setState({ destinations })
 )}
 
 getTrips(id) {
-  fetch('https://tripr-backend.herokuapp.com/api/v1/users/' + id + '/trips')
+  fetch('http://localhost:3001/api/v1/users/' + id + '/trips')
   .then(resp => resp.json())
   .then(trips => this.setState({ trips })
 )}

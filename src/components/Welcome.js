@@ -9,6 +9,18 @@ import {
 
 const Welcome = ({ mobile }) => (
   <Container text>
+    <div className="homepage-hero-module">
+      <div className="video-container">
+        <div className="filter"></div>
+        <video autoPlay loop className="fillWidth">
+          <source src="PATH_TO_MP4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+          <source src="PATH_TO_WEBM" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+        </video>
+        <div className="poster hidden">
+          <img src="PATH_TO_JPEG" alt="" />
+        </div>
+      </div>
+    </div>
     <Header
       as='h1'
       content='Welcome to Tripr'

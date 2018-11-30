@@ -26,9 +26,9 @@ class DestinationContainer extends Component {
 
   getDestinations() {
 <<<<<<< HEAD
-    fetch('https://tripr-backend.herokuapp.com/api/v1/destinations')
+    fetch('http://localhost:3001/api/v1/destinations')
 =======
-    fetch(`https://tripr-backend.herokuapp.com/api/v1/destinations`)
+    fetch(`http://localhost:3001/api/v1/destinations`)
 >>>>>>> 8f24e55ee2480bbc18e52066608dc37900d2f12d
       .then(resp => resp.json())
       .then(json => this.setState(prevState => {

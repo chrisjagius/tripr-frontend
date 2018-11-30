@@ -21,13 +21,13 @@ componentDidMount() {
 }
 
 getDestination(id) {
-  fetch('https://tripr-backend.herokuapp.com/api/v1/destinations/' + id )
+  fetch('http://localhost:3001/api/v1/destinations/' + id )
   .then(resp => resp.json())
   .then(destination => this.setState({ destination }))
 }
 
 getActivities(id) {
-  fetch('https://tripr-backend.herokuapp.com/api/v1/destinations/' + id + '/activities')
+  fetch('http://localhost:3001/api/v1/destinations/' + id + '/activities')
   .then(resp => resp.json())
   .then(activities => this.setState({ activities }))
 }
@@ -46,7 +46,7 @@ addActivity = (e) => {
 }
 
 assignActivity(id, data) {
-  fetch('https://tripr-backend.herokuapp.com/api/v1/trips/' + id, {
+  fetch('http://localhost:3001/api/v1/trips/' + id, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ assignActivity(id, data) {
         </Item>
 
         {this.state.showActivities ? <h1>Your Activities</h1> : null}
-        {this.state.showActivities ? <ActivitiesContainer url={`https://tripr-backend.herokuapp.com/api/v1/trips/${this.props.id}/activities`}/> : null}
+        {this.state.showActivities ? <ActivitiesContainer url={`http://localhost:3001/api/v1/trips/${this.props.id}/activities`}/> : null}
       </div>
     )} else {
       return null

@@ -10,7 +10,7 @@ class ActivitiesContainer extends Component {
       activities: []
     };
 
-    this.BASE_URL = 'https://tripr-backend.herokuapp.com/api/v1/destinations';
+    this.BASE_URL = 'http://localhost:3001/api/v1/destinations';
   }
 
   componentDidMount() {
