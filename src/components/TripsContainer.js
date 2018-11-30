@@ -10,69 +10,80 @@ class TripsContainer extends React.Component {
       destinations: [],
       trips: [],
       showActivities: false,
-      showForm: false
-    }
+      showForm: false,
+    };
   }
 
-  componentDidMount(){
-    this.getTrips(this.props.user.id)
-    this.getDestinations()
+  componentDidMount() {
+    this.getTrips(this.props.user.id);
+    this.getDestinations();
   }
 
+  getDestinations() {
+    fetch('http://localhost:3001/api/v1/destinations')
+      .then(resp => resp.json())
+      .then(destinations => this.setState({ destinations }));
+  }
 
+  getTrips(id) {
+    fetch('http://localhost:3001/api/v1/users/' + id + '/trips')
+      .then(resp => resp.json())
+      .then(trips => this.setState({ trips }));
+  }
 
-getDestinations() {
-  fetch('http://localhost:3001/api/v1/destinations')
-  .then(resp => resp.json())
-  .then(destinations => this.setState({ destinations })
-)}
+  activityClick = e => {
+    this.setState({
+      showActivities: !this.state.showActivities,
+    });
+  };
 
-getTrips(id) {
-  fetch('http://localhost:3001/api/v1/users/' + id + '/trips')
-  .then(resp => resp.json())
-  .then(trips => this.setState({ trips })
-)}
+  renderTripCards() {
+    const reversedTrips = this.state.trips.reverse();
+    return reversedTrips.map(trip => {
+      const key = `trip-${trip.id}`;
+      return (
+        <TripCard
+          handleClick={this.activityClick}
+          key={key}
+          {...trip}
+          showActivity={this.state.showActivities}
+        />
+      );
+    });
+  }
 
-activityClick = (e) => {
-  this.setState({
-    showActivities: !this.state.showActivities
-  })
-}
+  updateTrips = newTrips => {
+    this.setState({
+      trips: newTrips,
+    });
+  };
 
-renderTripCards() {
-  const reversedTrips = this.state.trips.reverse()
-  return reversedTrips.map(trip => {
-    const key = `trip-${trip.id}`;
+  toogleForm = e => {
+    this.setState({
+      showForm: !this.state.showForm,
+    });
+  };
+
+  render() {
     return (
-      <TripCard handleClick={this.activityClick} key={key} {...trip} showActivity={this.state.showActivities} />
+      <div>
+        <Button onClick={this.toogleForm}>
+          {this.state.showForm ? 'Close Form' : 'New Trip'}
+        </Button>
+        {this.state.showForm ? (
+          <NewTripForm
+            user_id={this.props.user.id}
+            trips={this.state.trips}
+            destinations={this.state.destinations}
+            updateTrips={this.updateTrips}
+            toogleForm={this.toogleForm}
+          />
+        ) : null}
+        <h1>{this.props.user.username}'s Trips</h1>
+
+        <Item.Group>{this.renderTripCards()}</Item.Group>
+      </div>
     );
-  });
-}
-
-updateTrips = (newTrips) => {
-  this.setState({
-    trips: newTrips
-  })
-}
-
-toogleForm = (e) => {
-  this.setState({
-    showForm: !this.state.showForm
-  })
-}
-
-render() {
-  return(
-    <div>
-      <Button onClick={this.toogleForm}>{this.state.showForm ? 'Close Form' : 'New Trip'}</Button>
-      {this.state.showForm ? <NewTripForm user_id={this.props.user.id} trips={this.state.trips} destinations={this.state.destinations} updateTrips={this.updateTrips}
-        toogleForm={this.toogleForm}/> : null}
-      <h1>{this.props.user.username}'s Trips</h1>
-
-      <Item.Group>
-        {this.renderTripCards()}
-      </Item.Group>
-    </div>)
   }
 }
 

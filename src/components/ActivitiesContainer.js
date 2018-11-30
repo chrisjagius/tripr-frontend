@@ -7,7 +7,7 @@ class ActivitiesContainer extends Component {
     super(props);
 
     this.state = {
-      activities: []
+      activities: [],
     };
 
     this.BASE_URL = 'http://localhost:3001/api/v1/destinations';
@@ -20,29 +20,27 @@ class ActivitiesContainer extends Component {
   getActivities(id) {
     fetch(id)
       .then(resp => resp.json())
-      .then(json => this.setState(prevState => {
-        return {
-          ...prevState,
-          activities: json
-        };
-      }));
+      .then(json =>
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            activities: json,
+          };
+        })
+      );
   }
 
   renderActivitiesCards() {
     return this.state.activities.map(activity => {
       const key = `activities-${activity.id}`;
-      return (
-        <ActivitiesCard key={key} {...activity} />
-      );
+      return <ActivitiesCard key={key} {...activity} />;
     });
   }
 
   render() {
     return (
-      <div id='activities-container'>
-        <Item.Group>
-          {this.renderActivitiesCards()}
-        </Item.Group>
+      <div id="activities-container">
+        <Item.Group>{this.renderActivitiesCards()}</Item.Group>
       </div>
     );
   }
