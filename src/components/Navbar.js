@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Container,
-  Menu,
-} from 'semantic-ui-react';
+import { Button, Container, Menu } from 'semantic-ui-react';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -24,40 +19,67 @@ class Navbar extends Component {
         inverted={!fixed}
         pointing={!fixed}
         secondary={!fixed}
-        size='large'
+        size="large"
       >
         <Container>
-          <Menu.Item as='a' id='nav-tripr' active header onClick={this.props.onNavClick} >
+          <Menu.Item
+            as="a"
+            id="nav-tripr"
+            active
+            header
+            onClick={this.props.onNavClick}
+          >
             Tripr
           </Menu.Item>
 
-          {loggedIn ?
-            (
-              <Menu.Item as='a' id='nav-trips' onClick={this.props.onNavClick}>My Trips</Menu.Item>
-            ) :
-            null
-          }
+          {loggedIn ? (
+            <Menu.Item as="a" id="nav-trips" onClick={this.props.onNavClick}>
+              My Trips
+            </Menu.Item>
+          ) : null}
 
-          {loggedIn ?
-            (
-              <Menu.Item as='a' id='nav-destinations' onClick={this.props.onNavClick}>Destinations</Menu.Item>
-            ) :
-            null
-          }
+          {loggedIn ? (
+            <Menu.Item
+              as="a"
+              id="nav-destinations"
+              onClick={this.props.onNavClick}
+            >
+              Destinations
+            </Menu.Item>
+          ) : null}
 
-          <Menu.Item position='right'>
-
-            { loggedIn ?
-              <Button id='nav-logout' as='a' inverted={!fixed} onClick={this.props.onLogout}>Log Out</Button> :
-              (
-                <div>
-                  <Button id='nav-login' onClick={this.props.onNavClick} as='a' inverted={!fixed}>Log In</Button>
-                  <Button id='nav-signup' onClick={this.props.onNavClick} as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+          <Menu.Item position="right">
+            {loggedIn ? (
+              <Button
+                id="nav-logout"
+                as="a"
+                inverted={!fixed}
+                onClick={this.props.onLogout}
+              >
+                Log Out
+              </Button>
+            ) : (
+              <div>
+                <Button
+                  id="nav-login"
+                  onClick={this.props.onNavClick}
+                  as="a"
+                  inverted={!fixed}
+                >
+                  Log In
+                </Button>
+                <Button
+                  id="nav-signup"
+                  onClick={this.props.onNavClick}
+                  as="a"
+                  inverted={!fixed}
+                  primary={fixed}
+                  style={{ marginLeft: '0.5em' }}
+                >
                   Sign Up
-                  </Button>
-                </div>
-              )
-            }
+                </Button>
+              </div>
+            )}
           </Menu.Item>
         </Container>
       </Menu>
@@ -66,7 +88,7 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  onNavClick: PropTypes.func
+  onNavClick: PropTypes.func,
 };
 
 export default Navbar;

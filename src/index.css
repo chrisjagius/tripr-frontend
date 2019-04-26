@@ -11,13 +11,12 @@ label {
   font-size: 25px;
 }
 
-.ui.medium.image
-   {
-        width: 300px;
-        height: auto;
-        font-size: 1rem;
-        margin: 10px;
-   }
+.ui.medium.image {
+  width: 300px;
+  height: auto;
+  font-size: 1rem;
+  margin: 10px;
+}
 .destination-card-description {
   /* background: red; */
   font-size: 20px;
@@ -45,7 +44,6 @@ label {
 
 .activities-card-item {
   background: #37373f;
-
 }
 .ui.medium.image.activities-card-image {
   background: blue;

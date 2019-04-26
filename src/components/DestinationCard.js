@@ -9,14 +9,14 @@ class DestinationCard extends React.Component {
 
     this.state = {
       showActivities: this.props.showActivity,
-      activities: []
+      activities: [],
     };
 
     this.BASE_URL = 'https://tripr-backend.herokuapp.com/api/v1/destinations';
 
     this.clickChangeState = () => {
       this.setState({
-        showActivities: !this.state.showActivities
+        showActivities: !this.state.showActivities,
       });
     };
   }
@@ -24,23 +24,28 @@ class DestinationCard extends React.Component {
   render() {
     return (
       <div>
-        <Item onClick={this.clickChangeState} className='destination-card-item'>
-          <Item.Image size='medium' src={this.props.thumbnail} />
-          <div className='destination-card'>
-            <Item.Content className='destination-card-content'>
-              <Item.Header as='a'>{this.props.name}</Item.Header>
-              <Item.Meta className='destination-card-meta'>
-                <br></br>
+        <Item onClick={this.clickChangeState} className="destination-card-item">
+          <Item.Image size="medium" src={this.props.thumbnail} />
+          <div className="destination-card">
+            <Item.Content className="destination-card-content">
+              <Item.Header as="a">{this.props.name}</Item.Header>
+              <Item.Meta className="destination-card-meta">
+                <br />
               </Item.Meta>
-              <Item.Description className='destination-card-description'>
+              <Item.Description className="destination-card-description">
                 {this.props.description}
               </Item.Description>
-
             </Item.Content>
           </div>
         </Item>
         {this.state.showActivities ? <h1>Top Activities</h1> : null}
-        {this.state.showActivities ? <ActivitiesContainer url={`https://tripr-backend.herokuapp.com/api/v1/destinations/${this.props.id}/activities`}/> : null }
+        {this.state.showActivities ? (
+          <ActivitiesContainer
+            url={`https://tripr-backend.herokuapp.com/api/v1/destinations/${
+              this.props.id
+            }/activities`}
+          />
+        ) : null}
       </div>
     );
   }
@@ -51,7 +56,7 @@ DestinationCard.propTypes = {
   description: PropTypes.string,
   id: PropTypes.number,
   showActivity: PropTypes.bool,
-  thumbnail: PropTypes.string
+  thumbnail: PropTypes.string,
 };
 
 export default DestinationCard;
